@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TouchPay</title>
+    <link rel="stylesheet" href="w.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg width="100%" height="100vh" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="black" fill-opacity="0.5"/><polygon points="8,-10 22,-10 62,110 48,110" fill="white" fill-opacity="0.25"><animate attributeName="points" values="8,-10 22,-10 62,110 48,110; 4,-14 26,-14 66,114 44,114; 8,-10 22,-10 62,110 48,110" dur="10s" repeatCount="indefinite"/></polygon><polygon points="38,-10 52,-10 92,110 78,110" fill="white" fill-opacity="0.25"><animate attributeName="points" values="38,-10 52,-10 92,110 78,110; 34,-14 56,-14 96,114 74,114; 38,-10 52,-10 92,110 78,110" dur="10s" repeatCount="indefinite"/></polygon></svg>') no-repeat center center;
+            background-size: cover;
+            z-index: 1;
+        }
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .hero-section video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .scroll-text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 2;
+        }
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 3;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        .px-6 {
+            padding-left: 10rem;
+            padding-top: 2rem;
+            padding-right: 10rem;
+        }
+        .justify-between {
+            justify-content: space-between;
+        }
+        .menu-toggle {
+            z-index: 4;
+        }
+    </style>  
+</head>
+<body>
+    <div>
+        <div class="container">
+            <div class="navbar">
+                <div class="menu-toggle">
+                    <div id="menu-toggle-btn">
+                        <span>
+                            <!-- From Uiverse.io by vinodjangid07 --> 
+                            <input type="checkbox" id="checkbox">
+                            <label for="checkbox" class="toggle">
+                                <div class="bars" id="bar1"></div>
+                                <div class="bars" id="bar2"></div>
+                                <div class="bars" id="bar3"></div>
+                            </label>
+                            <style>
+                                /* From Uiverse.io by vinodjangid07 */ 
+                                #checkbox {
+                                    display: none;
+                                }
+                                .toggle {
+                                    position: relative;
+                                    width: 40px;
+                                    height: 40px;
+                                    cursor: pointer;
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: center;
+                                    gap: 10px;
+                                    transition-duration: .5s;
+                                }
+
+                                .bars {
+                                    width: 100%;
+                                    height: 4px;
+                                    background-color: rgb(0, 140, 255);
+                                    border-radius: 4px;
+                                }
+
+                                #bar2 {
+                                    transition-duration: .8s;
+                                }
+
+                                #bar1,#bar3 {
+                                    width: 70%;
+                                }
+
+                                #checkbox:checked + .toggle .bars {
+                                    position: absolute;
+                                    transition-duration: .5s;
+                                }
+
+                                #checkbox:checked + .toggle #bar2 {
+                                    transform: scaleX(0);
+                                    transition-duration: .5s;
+                                }
+
+                                #checkbox:checked + .toggle #bar1 {
+                                    width: 100%;
+                                    transform: rotate(45deg);
+                                    transition-duration: .5s;
+                                }
+
+                                #checkbox:checked + .toggle #bar3 {
+                                    width: 100%;
+                                    transform: rotate(-45deg);
+                                    transition-duration: .5s;
+                                }
+
+                                #checkbox:checked + .toggle {
+                                    transition-duration: .5s;
+                                    transform: rotate(180deg);
+                                }
+                            </style>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <!-- <div class="relative h-screen"> -->
+                    <!-- <video class="absolute top-0 left-0 w-full h-full object-cover" src="sample.mp4" autoplay loop muted></video> -->
+                    <!-- <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white z-10"> -->
+                        <!-- <h1 class="text-5xl font-bold mb-4">Your Trusted Financial Partner</h1> -->
+                        <!-- <p class="text-xl mb-8">Revolutionizing Digital Payments – Simple, Secure, Smart</p> -->
+                        <!-- <h3 class="scroll-text bg-white/20 px-6 py-3 rounded-full font-bold transition duration-300">Scroll for more</h3> -->
+                    <!-- </div> -->
+                <!-- </div>                 -->
+            </div>
+            <div class="nav-container">
+                <style>
+                    .nav-container {
+                        position: fixed;
+                        z-index: 1;
+                        top: 0;
+                        width: 100%;
+                        height: 100vh;
+                        background: #000;
+                        color: #fff;
+                        transition: all 0.3s;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        visibility: hidden;
+                    }
+                </style>
+                <div class="nav">
+                    <div class="col flex">
+                        <div class="nav-logo">TouchPay</div>
+                        <div class="nav-socials">
+                            <a href="#">Instagram</a>
+                            <a href="#">LinkedIn</a>
+                            <a href="#">Twitter</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="nav-links">
+                            <a href="#">Home</a>
+                            <div class="nav-item-wrapper"></div>
+                        </div>
+                        <div class="nav-links">
+                            <a href="#">Work</a>
+                            <div class="nav-item-wrapper"></div>
+                        </div>
+                        <div class="nav-links">
+                            <a href="#">Services</a>
+                            <div class="nav-item-wrapper"></div>
+                        </div>
+                        <div class="nav-links">
+                            <a href="#">About</a>
+                            <div class="nav-item-wrapper"></div>
+                        </div>
+                        <div class="nav-links">
+                            <a href="#">Contact</a>
+                            <div class="nav-item-wrapper"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-footer">
+                    <div class="links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms & Conditions</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                    <div class="contact">
+                        <a href="#">+1 234 567 890</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#menu-toggle-btn').click(function() {
+                if ($('.nav-container').css('visibility') == 'hidden') {
+                    gsap.to('.nav-container', { duration: 0.3, opacity: 1, visibility: 'visible', onComplete: function() {
+                        gsap.to('.nav-links a', { duration: 0.3, opacity: 1, y: 0, stagger: 0.1 });
+                        gsap.to('.nav-footer', { duration: 0.3, opacity: 1 });
+                    }});
+                } else {
+                    gsap.to('.nav-links a', { duration: 0.3, opacity: 0, y: 20, stagger: 0.1 });
+                    gsap.to('.nav-footer', { duration: 0.3, opacity: 0, onComplete: function() {
+                        gsap.to('.nav-container', { duration: 0.3, opacity: 0, onComplete: function() {
+                            $('.nav-container').css('visibility', 'hidden');
+                        }});
+                    }});
+                }
+            });
+        });
+    </script>
+</body>
+</html>
