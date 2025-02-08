@@ -403,7 +403,7 @@ footer {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1000px) {
   .menu-overlay {
     padding: 2rem;
   }
@@ -427,8 +427,10 @@ footer {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1000px) {
   .nav-socials {
-    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
   }
 }
