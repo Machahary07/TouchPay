@@ -432,3 +432,9 @@ footer {
     display: none;
   }
 }
+
+@media (max-width: 1000px) {
+  .nav-footer {
+    display: none;
+  }
+}
