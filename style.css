@@ -189,6 +189,77 @@ body {
   text-align: center;
 }
 
+/* Gallery Grid (Pinterest Style) */
+.gallery-grid {
+  columns: 4;
+  column-gap: var(--gallery-gap);
+  
+  /* padding-bottom: 10px; */
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 1200px) {
+  .gallery-grid {
+    columns: 3;
+  }
+}
+
+@media (max-width: 900px) {
+  .gallery-grid {
+    columns: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-grid {
+    columns: unset;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gallery-gap);
+    padding: 0 var(--gallery-gap);
+  }
+
+  .gallery-item {
+    margin-bottom: 0;
+  }
+
+  .gallery-item:nth-child(6n + 1),
+  .gallery-item:nth-child(6n + 4) {
+    grid-column: span 2;
+  }
+
+  .gallery-item img {
+    aspect-ratio: 1/1;
+    height: 100%;
+    width: 100%;
+  }
+
+  .gallery-item:nth-child(6n + 1) img,
+  .gallery-item:nth-child(6n + 4) img {
+    aspect-ratio: 2/1;
+  }
+}
+
 /* Sections */
 .section {
   padding: 5rem 0;
